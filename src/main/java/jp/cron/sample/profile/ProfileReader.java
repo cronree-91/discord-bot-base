@@ -14,31 +14,21 @@ import java.util.Map;
 
 @Service
 public class ProfileReader {
-    public static String PREFIX = "SAMPLE_APP_";
     public Gson gson;
 
     @Bean
     public Profile profile() throws FileNotFoundException {
         String profileName = System.getenv("PROFILE_NAME");
-        if (profileName==null || profileName.equals("ENV")) {
-            return loadFromEnv();
-        } else {
-            return loadFromFile(profileName);
-        }
+        if (profileName==null )
+            profileName = "default";
+        Profile p = loadFromFile(profileName);
+        validate(p);
+        return p;
     }
 
     @Autowired
     public ProfileReader(Gson gson) {
         this.gson = gson;
-    }
-
-    public Profile loadFromEnv() {
-        Profile profile = new Profile();
-        profile.mongoDbUri = System.getenv(PREFIX+"MONGO_DB_URI");
-        profile.mongoDbName = System.getenv(PREFIX+"MONGO_DB_NAME");
-        profile.isSsl = Boolean.valueOf(System.getenv(PREFIX+"MONGO_IS_SSL"));
-
-        return profile;
     }
 
     public Profile loadFromFile(String profileName) throws FileNotFoundException {
@@ -52,6 +42,12 @@ public class ProfileReader {
             return gson.fromJson(new FileReader(configFile), Profile.class);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Profile file not found: "+configFile.getAbsolutePath());
+        }
+    }
+
+    public void validate(Profile profile) {
+        if (profile.ownersId.length < 1) {
+            throw new RuntimeException("Owners ID not found");
         }
     }
 

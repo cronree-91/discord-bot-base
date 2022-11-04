@@ -43,17 +43,17 @@ public class Bot {
     public CommandClientBuilder generateCommandClientBuilder() {
         return new CommandClientBuilder()
                 .setPrefix(profile.prefix)
-                .setOwnerId(profile.ownerId)
-                .setCoOwnerIds(profile.coOwnersId)
+                .setOwnerId(profile.ownersId[0])
+                .setCoOwnerIds(Arrays.copyOfRange(profile.ownersId, 1, profile.ownersId.length))
                 .setEmojis(EmojiParser.parseToUnicode("o"), null, EmojiParser.parseToUnicode("x"))
-                .setServerInvite(profile.serverInvite)
                 .setStatus(OnlineStatus.ONLINE)
+                .setActivity(null)
                 .addCommands(commandManager.getCommands().toArray(new Command[0]))
                 .addSlashCommands(commandManager.getCommands().toArray(new Command[0]))
                 .useHelpBuilder(false);
     }
 
-    public JDABuilder jdaBuilder() throws UnknownHostException {
+    public JDABuilder jdaBuilder() {
         return JDABuilder.create(profile.token, Arrays.asList(GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.DIRECT_MESSAGES))
                 .enableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE)
                 .disableCache(CacheFlag.ACTIVITY, CacheFlag.CLIENT_STATUS, CacheFlag.EMOTE, CacheFlag.ONLINE_STATUS)

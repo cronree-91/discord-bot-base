@@ -15,7 +15,6 @@ public class EmbedUtil {
                 .setTitle(":x: エラーが発生しました。")
                 .setDescription(message)
                 .setColor(Color.RED)
-                .addField("お困りですか？", "[公式サポートサーバー](https://discord.gg/YbB4H4tRea)までご連絡ください。", true)
                 .build();
     }
 
@@ -44,8 +43,6 @@ public class EmbedUtil {
         String invites = "";
         try {
             invites =  guild.retrieveInvites().complete().stream()
-//                    .filter(i -> !i.isTemporary())
-//                    .map(i -> i.getUrl()+" by "+FormatUtil.formatUser(i.getInviter(), true))
                     .map(Invite::getUrl)
                     .collect(Collectors.joining("\n"));
         } catch (Exception ignored) {}

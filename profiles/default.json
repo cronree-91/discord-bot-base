@@ -1,8 +1,11 @@
 {
   "token": "TOKEN",
-  "prefix": "d!",
   "ownersId": [],
   "mongoDbName": "development_sample_app",
   "mongoDbUri": "mongodb://localhost:27017",
-  "isSsl": false
+  "isSsl": false,
+  "serverInvite": "",
+  "botInvite": "",
+  "authorName": "",
+  "authorIcon": ""
 }

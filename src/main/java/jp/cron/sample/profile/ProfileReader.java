@@ -20,7 +20,7 @@ public class ProfileReader {
     public Profile profile() throws FileNotFoundException {
         String profileName = System.getenv("PROFILE_NAME");
         if (profileName==null )
-            profileName = "default";
+            profileName = "main";
         Profile p = loadFromFile(profileName);
         validate(p);
         return p;

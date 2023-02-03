@@ -1,10 +1,8 @@
 package jp.cron.sample.bot.command;
 
-import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.command.SlashCommand;
+import com.jagrosh.jdautilities.command.SlashCommandEvent;
 import jp.cron.sample.profile.Profile;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 
 import java.awt.*;
 
@@ -19,12 +17,12 @@ public abstract class Command extends SlashCommand {
 
     @Override
     protected void execute(SlashCommandEvent event) {
-        event.deferReply().complete();
         try {
-            process(event, new CommandReplier(event.getHook(), null));
+            process(event);
         } catch (Exception ex) {
+
         }
     }
 
-    protected abstract void process(SlashCommandEvent event, CommandReplier replier);
+    protected abstract void process(SlashCommandEvent event);
 }

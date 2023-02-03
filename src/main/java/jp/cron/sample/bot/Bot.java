@@ -42,7 +42,6 @@ public class Bot {
 
     public CommandClientBuilder generateCommandClientBuilder() {
         return new CommandClientBuilder()
-                .setPrefix(profile.prefix)
                 .setOwnerId(profile.ownersId[0])
                 .setCoOwnerIds(Arrays.copyOfRange(profile.ownersId, 1, profile.ownersId.length))
                 .setEmojis(EmojiParser.parseToUnicode("o"), null, EmojiParser.parseToUnicode("x"))
@@ -56,7 +55,7 @@ public class Bot {
     public JDABuilder jdaBuilder() {
         return JDABuilder.create(profile.token, Arrays.asList(GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.DIRECT_MESSAGES))
                 .enableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE)
-                .disableCache(CacheFlag.ACTIVITY, CacheFlag.CLIENT_STATUS, CacheFlag.EMOTE, CacheFlag.ONLINE_STATUS)
+                .disableCache(CacheFlag.ACTIVITY, CacheFlag.CLIENT_STATUS, CacheFlag.ONLINE_STATUS)
                 .setBulkDeleteSplittingEnabled(true)
                 .setAutoReconnect(true);
     }

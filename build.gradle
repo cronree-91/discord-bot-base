@@ -23,7 +23,7 @@ repositories {
     }
     maven {
         name = "chew"
-        url = "https://m2.chew.pro/releases"
+        url = "https://m2.chew.pro/snapshots"
     }
 }
 
@@ -40,10 +40,9 @@ dependencies {
 
     implementation "com.google.guava:guava:31.1-jre"
 
-    implementation 'net.dv8tion:JDA:4.4.0_350'
-    implementation 'pw.chew:jda-chewtils:1.21.0'
+    implementation 'net.dv8tion:JDA:5.0.0-beta.2'
+    implementation 'pw.chew:jda-chewtils:2.0-SNAPSHOT'
     implementation 'com.vdurmont:emoji-java:5.1.1'
-    implementation 'com.sedmelluq:lavaplayer:1.3.78'
 }
 
 compileKotlin {

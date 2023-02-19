@@ -1,0 +1,15 @@
+bot:
+  setting:
+    prefix: ""
+    token: ""
+    ownerId: ""
+    coOwnerIds: ""
+  info:
+    botInvite: ""
+  report:
+    error: ""
+
+mongodb:
+  uri: mongodb://localhost:27017
+  database: development_blue
+  ssl: false

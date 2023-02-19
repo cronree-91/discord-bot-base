@@ -1,12 +1,10 @@
-package jp.cron.sample.data;
+package jp.cron.sample.api.data;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import jp.cron.sample.profile.Profile;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 
@@ -19,21 +17,26 @@ import java.security.cert.X509Certificate;
 
 @Configuration
 public class MongoConfig extends AbstractMongoClientConfiguration {
-    @Autowired
-    Profile profile;
+    @Value("${mongodb.uri}")
+    String mongoDbUri;
+
+    @Value("${mongodb.database}")
+    String mongoDbDatabase;
+
+    @Value("${mongodb.ssl}")
+    Boolean mongoDbSsl;
 
 
-    @NotNull
+
     @Override
     protected String getDatabaseName() {
-        return profile.mongoDbName;
+        return mongoDbDatabase;
     }
 
-    @NotNull
     @Override
     public MongoClient mongoClient() {
 
-        ConnectionString connectionString = new ConnectionString(profile.mongoDbUri);
+        ConnectionString connectionString = new ConnectionString(mongoDbUri);
         TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() {
@@ -59,7 +62,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .applyToSslSettings(builder -> {
-                    if (profile.isSsl) {
+                    if (mongoDbSsl) {
                         builder.enabled(true);
                         builder.invalidHostNameAllowed(true);
                         builder.context(finalSc);

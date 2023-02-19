@@ -6,7 +6,7 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class SHA256Util {
+public class HashUtil {
     public static String sha256(String text) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -17,6 +17,16 @@ public class SHA256Util {
                 sb.append(String.format("%02x", b&0xff) );
             }
             return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
+    }
+
+    public static byte[] sha256Bytes(String text) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(text.getBytes());
+            return md.digest();
         } catch (NoSuchAlgorithmException e) {
             return null;
         }

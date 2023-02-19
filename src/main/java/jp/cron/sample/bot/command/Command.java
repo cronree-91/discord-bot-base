@@ -2,14 +2,12 @@ package jp.cron.sample.bot.command;
 
 import com.jagrosh.jdautilities.command.SlashCommand;
 import com.jagrosh.jdautilities.command.SlashCommandEvent;
-import jp.cron.sample.profile.Profile;
-
-import java.awt.*;
+import jp.cron.sample.api.service.exception.ExceptionHandler;
 
 public abstract class Command extends SlashCommand {
-    Profile profile;
-    public Command(Profile profile, String name, String help, String... aliases) {
-        this.profile = profile;
+    ExceptionHandler handler;
+    public Command(ExceptionHandler handler, String name, String help, String... aliases) {
+        this.handler = handler;
         this.name = name;
         this.help = help;
         this.aliases = aliases;
@@ -20,7 +18,7 @@ public abstract class Command extends SlashCommand {
         try {
             process(event);
         } catch (Exception ex) {
-
+            handler.handle(ex, event.getTextChannel());
         }
     }
 

@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 public class CommandLineRunner implements org.springframework.boot.CommandLineRunner, ILogger {

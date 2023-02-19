@@ -1,6 +1,5 @@
 package jp.cron.sample.bot;
 
-import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.vdurmont.emoji.EmojiParser;
@@ -15,9 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.security.auth.login.LoginException;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 
 @Service

@@ -2,7 +2,6 @@ package jp.cron.sample.bot.command.impl;
 
 import com.jagrosh.jdautilities.command.SlashCommandEvent;
 import jp.cron.sample.api.service.exception.ExceptionHandler;
-import jp.cron.sample.api.service.exception.impl.InsufficientPermissionExceptionHandler;
 import jp.cron.sample.bot.command.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,5 @@
 package jp.cron.sample.util;
 
-import com.google.common.net.InternetDomainName;
 import net.dv8tion.jda.api.entities.User;
 
 public class FormatUtil {
@@ -12,12 +11,12 @@ public class FormatUtil {
         return sb.toString();
     }
 
-    public static String getDomainMainName(String url) {
-        InternetDomainName internetDomainName = InternetDomainName.from(url)
-                .topPrivateDomain();
-        String publicSuffix = internetDomainName.publicSuffix()
-                .toString();
-        String domainName = internetDomainName.toString();
-        return domainName.substring(0, domainName.lastIndexOf("." + publicSuffix));
-    }
+//    public static String getDomainMainName(String url) {
+//        InternetDomainName internetDomainName = InternetDomainName.from(url)
+//                .topPrivateDomain();
+//        String publicSuffix = internetDomainName.publicSuffix()
+//                .toString();
+//        String domainName = internetDomainName.toString();
+//        return domainName.substring(0, domainName.lastIndexOf("." + publicSuffix));
+//    }
 }

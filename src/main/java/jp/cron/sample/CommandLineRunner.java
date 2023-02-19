@@ -6,9 +6,7 @@ import jp.cron.sample.util.ILogger;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class CommandLineRunner implements org.springframework.boot.CommandLineRunner, ILogger {
@@ -17,9 +15,6 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
     CommandClientBuilder commandClientBuilder;
     @Autowired
     JDABuilder jdaBuilder;
-    @Value("${bot.info.clientid}")
-    String clientId;
-
     @Override
     public void run(String... args) throws Exception {
         CommandClient client = commandClientBuilder.build();

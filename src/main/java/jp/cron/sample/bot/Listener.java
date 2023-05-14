@@ -1,6 +1,7 @@
 package jp.cron.sample.bot;
 
 import jp.cron.sample.api.service.exception.ExceptionHandler;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
@@ -27,6 +28,8 @@ public class Listener extends ListenerAdapter {
     public void onReady(@NotNull ReadyEvent event) {
         logger.info("Bot is ready");
         logger.info("BOT NAME: " + event.getJDA().getSelfUser().getName());
+
+        event.getJDA().getPresence().setPresence(Activity.playing("Ready!"), false);
     }
 
     @Override

@@ -47,7 +47,6 @@ public class Bot {
                 .setActivity(null)
                 .addCommands(commandManager.getCommands().toArray(new Command[0]))
                 .addSlashCommands(commandManager.getCommands().toArray(new Command[0]))
-                .setActivity(Activity.playing("準備中... / Loading..."))
                 .useHelpBuilder(false);
     }
 

@@ -15,18 +15,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class Bot {
 
     @Autowired
     CommandManager commandManager;
+
     @Autowired
-    Listener listener;
+    List<Listener> listeners;
 
     @Value("${bot.setting.ownerId}")
     String ownerId;
-//    @Value("${bot.setting.coOwnerIds}")
+    //    @Value("${bot.setting.coOwnerIds}")
 //    String coOwnerIds;
     @Value("${bot.setting.token}")
     String token;
@@ -60,6 +62,6 @@ public class Bot {
                 .setEnableShutdownHook(true)
                 .addEventListeners(eventWaiter)
                 .setActivity(Activity.playing("準備中... / Loading..."))
-                .addEventListeners(listener);
+                .addEventListeners(listeners.toArray(new Listener[0]));
     }
 }

@@ -11,12 +11,4 @@ public class FormatUtil {
         return sb.toString();
     }
 
-//    public static String getDomainMainName(String url) {
-//        InternetDomainName internetDomainName = InternetDomainName.from(url)
-//                .topPrivateDomain();
-//        String publicSuffix = internetDomainName.publicSuffix()
-//                .toString();
-//        String domainName = internetDomainName.toString();
-//        return domainName.substring(0, domainName.lastIndexOf("." + publicSuffix));
-//    }
 }

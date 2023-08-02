@@ -1,4 +1,4 @@
-package jp.cron.sample.api.service.provider;
+package jp.cron.sample.api.service;
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import org.springframework.context.annotation.Bean;

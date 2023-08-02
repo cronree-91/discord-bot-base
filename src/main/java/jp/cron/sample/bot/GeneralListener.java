@@ -1,6 +1,5 @@
 package jp.cron.sample.bot;
 
-import jp.cron.sample.api.service.exception.ExceptionHandler;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -20,8 +19,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GeneralListener extends Listener {
-    @Autowired
-    ExceptionHandler handler;
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -42,23 +39,15 @@ public class GeneralListener extends Listener {
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        try {
-            if (event.getAuthor().isBot())
-                return;
-        } catch (Exception ex) {
-            handler.handle(ex, event.getChannel().asTextChannel());
-        }
+        if (event.getAuthor().isBot())
+            return;
     }
 
     public void onGuildVoiceUpdate(@NotNull GuildVoiceUpdateEvent event) {
-        try {
-            if (event.getChannelLeft() != null && event.getChannelLeft().getType()== ChannelType.VOICE)
-                onGuildVoiceLeave(event.getGuild(), event.getMember(), event.getChannelLeft().asVoiceChannel());
-            if (event.getChannelJoined() != null && event.getChannelJoined().getType()==ChannelType.VOICE)
-                onGuildVoiceJoin(event.getGuild(), event.getMember(), event.getChannelJoined().asVoiceChannel());
-        } catch (Exception ex) {
-            handler.handle(ex, event.getGuild());
-        }
+        if (event.getChannelLeft() != null && event.getChannelLeft().getType()== ChannelType.VOICE)
+            onGuildVoiceLeave(event.getGuild(), event.getMember(), event.getChannelLeft().asVoiceChannel());
+        if (event.getChannelJoined() != null && event.getChannelJoined().getType()==ChannelType.VOICE)
+            onGuildVoiceJoin(event.getGuild(), event.getMember(), event.getChannelJoined().asVoiceChannel());
     }
 
     private void onGuildVoiceJoin(Guild guild, Member target, VoiceChannel ch) {

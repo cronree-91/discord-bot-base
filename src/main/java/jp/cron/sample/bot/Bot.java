@@ -28,8 +28,6 @@ public class Bot {
 
     @Value("${bot.setting.ownerId}")
     String ownerId;
-    //    @Value("${bot.setting.coOwnerIds}")
-//    String coOwnerIds;
     @Value("${bot.setting.token}")
     String token;
 

@@ -23,6 +23,7 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
                 .build();
 
         while (jda.getStatus() != JDA.Status.SHUTDOWN) {
+            Thread.onSpinWait();
         }
 
         getLogger().warn("SHUTTING DOWN...");
